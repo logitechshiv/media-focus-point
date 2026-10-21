@@ -11,6 +11,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.1.0] — 2026-10-21
+
+### Changed
+
+- Steps aside when Media Hub Pro 1.8+ applies focus points itself, so a page is never rewritten twice. It takes over again if the Media Hub's version is turned off with `kirbycode.media-hub.focus-frontend`.
+- README: positioned as the add-on for sites without the Media Hub.
+
+---
+
 ## [1.0.0] — 2026-10-21
 
 ### Added

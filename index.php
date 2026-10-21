@@ -26,6 +26,15 @@ App::plugin('kirbycode/media-focus-point', [
 				return $html;
 			}
 
+			// Media Hub Pro 1.8+ does the same itself; step aside so the page
+			// isn't rewritten twice. Runs again if the Media Hub's is turned off.
+			if (
+				class_exists(\Kirbycode\MediaHub\Focus\FocusPoint::class) &&
+				\Kirbycode\MediaHub\Focus\FocusPoint::frontendEnabled()
+			) {
+				return $html;
+			}
+
 			return FocusPoint::apply($html);
 		},
 	],

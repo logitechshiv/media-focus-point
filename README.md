@@ -1,6 +1,8 @@
 # Media Focus Point
 
-Focus point add-on for [Kirby Media Hub Pro](https://github.com/logitechshiv/kirby-media-hub-pro).
+Focus point add-on for Kirby sites without [Kirby Media Hub Pro](https://github.com/logitechshiv/kirby-media-hub-pro).
+
+> **Using Media Hub Pro 1.8 or later?** You don't need this add-on: the Media Hub has the same feature built in, in Free and Pro. If both are installed, this add-on steps aside automatically. See [Using with Media Hub Pro](#using-with-media-hub-pro).
 
 When an editor sets a focus point on an image, every `<img>` of that image on your site keeps that spot in view. It works with any template, snippet or block. You don't have to change your markup.
 
@@ -14,7 +16,7 @@ When an editor sets a focus point on an image, every `<img>` of that image on yo
 
 ## How it works
 
-1. **Set a focus point.** In the Media Hub, open an image and click the spot that must stay visible. You can also set it in the image's details in the picker field, or in Kirby's own file view. It is stored in Kirby's native `focus` field.
+1. **Set a focus point.** In Kirby's own file view, open an image and set its focus point. With the Media Hub, click the spot in the Media Hub or the picker field instead. Either way it is stored in Kirby's native `focus` field.
 2. **The add-on applies it.** After Kirby renders a page, the add-on checks every `<img>`. If the `src` (or `data-src`) points to an image with a focus point, it adds `object-position: X% Y%`. This works for the original file and for every thumb or `srcset` size.
 3. **CSS does the rest.** With `object-fit: cover`, the browser crops around that point at every screen size.
 
@@ -24,7 +26,7 @@ The add-on doesn't change images without a focus point, so your stylesheet stays
 
 - Kirby 5
 - PHP 8.2+
-- Kirby Media Hub Pro 1.7.0+ to set focus points with a click (recommended). Without it, the add-on still works with focus points set in Kirby's file view.
+- Nothing else. Focus points are set in Kirby's file view.
 
 ## Installation
 
@@ -93,8 +95,6 @@ FocusPoint::style($image);    // "object-position: 62.5% 30%" or ''
 <div class="hero" style="background-image: url(<?= $image->url() ?>); background-position: <?= FocusPoint::position($image) ?? 'center' ?>">
 ```
 
-Media Hub Pro also adds `$file->focusPosition()` and `$file->focusStyle()`, which return the same values.
-
 The add-on accepts the same focus values Kirby does: `X% Y%`, keywords like `top left`, and the JSON format of the former Focus plugin.
 
 ## Limitations
@@ -102,7 +102,14 @@ The add-on accepts the same focus values Kirby does: `X% Y%`, keywords like `top
 - **CSS backgrounds.** CSS `background-image` isn't rewritten. Use `FocusPoint::position()`, shown above.
 - **Content loaded with JavaScript.** Images added after the page loads (AJAX, "load more", client-side rendering) don't go through Kirby's page render, so they don't get the focus point. Include `FocusPoint::position()` in the JSON your endpoint returns.
 - **`<picture>` with different files per breakpoint.** The `<img>` gets the focus point of its own `src` file, even when a `<source>` swaps in a different image.
-- **SVG.** Kirby can't crop SVGs, so the Media Hub doesn't offer a focus point for them.
+
+## Using with Media Hub Pro
+
+Media Hub Pro 1.8 and later include this feature, in Free and Pro, along with click-to-set focus points and the `$file->focusPosition()` / `$file->focusStyle()` helpers. On those sites you can remove this add-on.
+
+If both are installed, this add-on does nothing while the Media Hub applies focus points. If you turn the Media Hub's version off (`'kirbycode.media-hub.focus-frontend' => false`), the add-on takes over again. Set `'kirbycode.media-focus-point.enabled' => false` too if you want neither.
+
+With Media Hub Pro 1.7, this add-on is needed to apply focus points automatically.
 
 ## Performance
 
