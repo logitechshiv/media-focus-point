@@ -1,0 +1,40 @@
+{
+  "name": "kirbycode/media-focus-point",
+  "description": "Focus point add-on for Kirby Media Hub Pro — applies each image's focus point as object-position to every <img> on the rendered page.",
+  "type": "kirby-plugin",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Shivlal Sheladiya",
+      "homepage": "https://kirbycode.com"
+    }
+  ],
+  "keywords": [
+    "kirby",
+    "kirby-plugin",
+    "focus-point",
+    "object-position",
+    "images",
+    "media-hub",
+    "kirby5"
+  ],
+  "homepage": "https://github.com/logitechshiv/media-focus-point",
+  "support": {
+    "issues": "https://github.com/logitechshiv/media-focus-point/issues",
+    "source": "https://github.com/logitechshiv/media-focus-point"
+  },
+  "require": {
+    "php": ">=8.2",
+    "getkirby/cms": "^5.0",
+    "getkirby/composer-installer": "^1.1"
+  },
+  "suggest": {
+    "kirbycode/media-hub-pro": "Set focus points with a click in the Media Hub and the picker field"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kirbycode\\MediaFocusPoint\\": "src/"
+    }
+  }
+}
